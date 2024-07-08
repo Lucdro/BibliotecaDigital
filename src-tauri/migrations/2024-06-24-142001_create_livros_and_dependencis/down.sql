@@ -1,0 +1,11 @@
+-- This file should undo anything in `up.sql`
+DROP TABLE IF EXISTS "categorias" CASCADE;
+DROP TABLE IF EXISTS "pessoas" CASCADE;
+DROP TABLE IF EXISTS "idiomas" CASCADE;
+DROP TABLE IF EXISTS "autores_livro" CASCADE;
+DROP TABLE IF EXISTS "emprestimos" CASCADE;
+DROP TABLE IF EXISTS "editoras" CASCADE;
+DROP TABLE IF EXISTS "livros" CASCADE;
+DROP TABLE IF EXISTS "autores" CASCADE;
+DROP TABLE IF EXISTS "categorias_livro" CASCADE;
+

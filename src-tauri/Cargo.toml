@@ -11,10 +11,19 @@ edition = "2021"
 tauri-build = { version = "1", features = [] }
 
 [dependencies]
-tauri = { version = "1", features = ["shell-open"] }
+tauri = { version = "1.6", features = ["shell-open"] }
 serde = { version = "1", features = ["derive"] }
+serde_derive = "1.0"
 serde_json = "1"
-
+diesel = { version = "2.2.0", features = ["postgres", "chrono"] }
+dotenvy = "0.15"
+chrono = { version = "0.4", features = ["serde"] }
+sha2 = "0.10.8"
 [features]
 # This feature is used for production builds or when a dev server is not specified, DO NOT REMOVE!!
 custom-protocol = ["tauri/custom-protocol"]
+
+
+
+
+

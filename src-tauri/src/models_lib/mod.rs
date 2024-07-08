@@ -1,0 +1,11 @@
+pub mod categoria;
+pub mod editora;
+pub mod idioma;
+pub mod livro;
+pub mod autor;
+pub mod pessoa;
+pub mod autor_livro;
+pub mod categoria_livro;
+pub mod emprestimo;
+pub mod usuario;
+pub mod logs;

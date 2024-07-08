@@ -1,7 +1,7 @@
 {
   "build": {
-    "devPath": "../src",
-    "distDir": "../src",
+    "devPath": "../src/ui",
+    "distDir": "../src/ui",
     "withGlobalTauri": true
   },
   "package": {
@@ -18,7 +18,7 @@
     },
     "windows": [
       {
-        "title": "bibliotecadigital",
+        "title": "Biblioteca digital",
         "width": 800,
         "height": 600
       }
