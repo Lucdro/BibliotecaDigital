@@ -1,0 +1,256 @@
+/* Hide spinner for Chrome, Safari, Edge, and Opera */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Hide spinner for Firefox */
+input[type="number"] {
+    appearance: textfield;
+}
+.content{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding:2rem;
+    position: relative;
+}
+.content_top{
+    height: 4rem;
+    display: grid;
+    grid-template-columns: 1fr auto; /* One column for content, one for button */
+    align-items: center;
+}
+.filters form{
+    height: fit-content;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+}
+.show_itens{
+    background: #B1D7D0;
+    border-radius: 10px;
+    flex: 1;
+}
+.item_livro{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 15px;
+    background-color: #85a8b9;
+    padding: 10px;
+    border-radius: 10px;
+}
+.item_livro > div {
+    display: flex;
+    flex-direction: column;
+    color: #f6f6f6;
+    margin-left: 10px;
+}
+.titulo{
+    font-size: 24px;
+    margin-bottom: 5px;
+}
+.container_autores{
+    display: flex;
+    flex-direction: row;
+}
+.autor{
+    font-size: 16px;
+    font-weight: 300;
+    color: #f9f3d6;
+    margin-right: 10px;
+}
+.item_livro > div > button{
+    color: #f6f6f6;
+    padding: 5px;
+    font-size: 16px;
+    margin: 2px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.alterar{
+    background: #6e512d;
+}
+.alterar:hover{
+    background: #979d48;
+}
+.apagar{
+    background: #8d1f10;
+}
+.apagar:hover{
+    background: #c25526;
+}
+.lbl_form{
+    color: #0f0f0f;
+    font-weight: 400;
+    margin-left: 1rem;
+    font-size: 1.25rem;
+}
+.lbl_filtro{
+    color: #0f0f0f;
+    position: relative;
+    left: 2rem;
+    font-weight: 400;
+    font-size: 1.5rem;
+}
+.input_form{
+    background-color: #F9CCC8;
+    height: 2rem;
+    border-radius: 10px;
+    font-size: 1.25rem;
+    color: #0f0f0f;
+    padding-left: 1rem;
+    margin-bottom: 0.5rem;
+    margin-right: 1rem;
+}
+.input_filtro{
+    background-color: #F9CCC8;
+    height: 3rem;
+    border-radius: 20px;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    color: #0f0f0f;
+    padding-left: 2rem;
+}
+.btn_pesquisar{
+    background-color: #407A5A;
+    height: fit-content;
+    border-radius: 15px;
+    font-size: 1.5rem;
+    color: #f6f6f6;
+    padding: 1rem;
+}
+.btn_submit{
+    background-color: #407A5A;
+    height: fit-content;
+    border-radius: 15px;
+    margin-right: 3rem;
+    font-size: 1.5rem;
+    color: #f6f6f6;
+    padding: 1rem;
+}
+.btn_pesquisar:hover{
+    background-color: #5d9c67;
+    cursor: pointer;
+}
+.form_group{
+    display: flex;
+    flex-direction: column;
+}
+.bem_vindo{
+    font-size: 4rem;
+}
+.first_collum{
+    width: 300px;
+}
+.center_collum{
+    width: 300px;
+}
+.submit_collum{
+    position: absolute;
+    right: 0;
+    bottom: 2rem;
+}
+.multiple_selection{
+    position: relative;
+}
+.multiple_selection > div{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.selecao_group{
+    display:flex;
+    flex-direction: column;
+    height: 64px;
+    width: calc(100% - 3rem);
+}
+.selecao_group span{
+    margin-left: 1rem;
+}
+.selecionados{
+    height: 48px;
+    flex: 1;
+    margin-left: 1rem;
+    margin-bottom: 5px;
+    display: flex;
+    flex-direction: row;
+    background: #F9CCC8;
+    border-radius: 10px;
+    position: relative;
+    overflow-x: scroll;
+    display: flex;
+    flex-direction: row;
+}
+.selecionados div{
+    background-color: #f6f6f6;
+    color: #0f0f0f;
+    padding: 0.5rem;
+    font-size: 1.5rem;
+    border-radius: 10px;
+    width: fit-content;
+    margin-left: 5px;
+}
+.selecionados div:hover{
+    background-color: #8d1f10;
+    cursor: pointer;
+}
+.add_selection{
+    color: #0f0f0f;
+    font-size: 20px;  
+    font-weight: 700;  
+    width: 20px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    border-radius: 20px;
+    background-color: #f6f6f6;
+}
+.add_selection:hover{
+    background: #d6d6d6;
+}
+.selection{
+    position: absolute;
+    z-index: 10;
+    display: none;
+    top: 0px;
+    width: 100%;
+    height: 4rem;
+    font-size: 2rem;
+}
+
+#create_new{
+    color:#f6f6f6;
+    font-size: 2rem;
+    font-weight: 300;
+    background: #50211C;
+    padding: 1.5rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    border-radius: 15px;
+    margin-right: 1rem;
+}
+#create_new:hover{
+    background: #795730;
+    cursor: pointer;
+}
+#livro_form{
+    display: flex;
+
+}
+
+#categorias{
+    margin-right: 4rem;
+}
+@media (max-width: 1280px) {
+    .bem_vindo{
+        font-size: 4rem;
+    }
+}

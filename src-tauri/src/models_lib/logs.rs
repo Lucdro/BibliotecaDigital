@@ -3,14 +3,13 @@ use diesel::prelude::*;
 use diesel::QueryDsl;
 use diesel::result::Error;
 use bibliotecadigital::schema::logs::dsl::*;
-use bibliotecadigital::models::Log;
+use bibliotecadigital::models::{Log,NewLog};
 use bibliotecadigital::schema::logs;
 
 pub fn criar_log(conn: &mut PgConnection,
     descricao_nova: String
 ) -> Result<Log,Error>{
-    let new_log = Log {
-        id: 0,
+    let new_log = NewLog {
         descricao: descricao_nova,
         criado_em: None,
     };

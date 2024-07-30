@@ -4,7 +4,7 @@ use diesel::*;
 use diesel::QueryDsl;
 use diesel::result::Error;
 use bibliotecadigital::schema::livros::dsl::*;
-use bibliotecadigital::models::{Livro,LivroAlterar};
+use bibliotecadigital::models::{Livro,LivroAlterar,NewLivro};
 use bibliotecadigital::schema::livros;
 
 pub fn criar_livro(
@@ -21,8 +21,7 @@ pub fn criar_livro(
     origem_novo: Option<&str>,
     descricao_novo: Option<&str>,
 ) -> Result<Livro, Error>{
-    let novo_livro = Livro  {
-        id: 0,
+    let novo_livro = NewLivro  {
         codigo_barras: codigo_barras_novo.map(|s| s.to_string()),
         titulo: titulo_novo.to_string(),
         quantidade: quantidade_novo,
@@ -70,6 +69,10 @@ pub fn listar_livros(conn: &mut PgConnection,
     if descricao_busca.is_some(){ query = query.filter(descricao.ilike(format!("%{}%",descricao_busca.unwrap()))); }
 
     query.load::<Livro>(conn)
+}
+
+pub fn buscar_livro_id(conn: &mut PgConnection, id_busca: i32) -> Result<Livro, Error>{
+    livros.find(id_busca).get_result(conn)
 }
 
 pub fn apagar_livro(conn: &mut PgConnection, id_delete: i32) -> Result<usize, Error>{

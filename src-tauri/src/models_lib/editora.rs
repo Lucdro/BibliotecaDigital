@@ -2,12 +2,12 @@ use diesel::pg::PgConnection;
 use diesel::prelude::*;
 use diesel::QueryDsl;
 use diesel::result::Error;
-use bibliotecadigital::models::Editora;
+use bibliotecadigital::models::{Editora, NewEditora};
 use bibliotecadigital::schema::editoras;
 use bibliotecadigital::schema::editoras::dsl::*;
 
 pub fn criar_editora(conn: &mut PgConnection, nome_novo: &str) -> Result<Editora,Error>{
-    let nova_editora = Editora  {id: 0, nome: nome_novo.to_string()};
+    let nova_editora = NewEditora  {nome: nome_novo.to_string()};
 
     diesel::insert_into(editoras::table)
         .values(&nova_editora)
@@ -30,4 +30,9 @@ pub fn mudar_nome_editora(conn: &mut PgConnection, id_editora: i32, novo_nome: &
         .set(nome.eq(novo_nome))
         .returning(Editora::as_returning())
         .get_result(conn)
+}
+
+pub fn buscar_editora_id(conn: &mut PgConnection, id_editora: i32) -> Result<Editora,Error>{
+    editoras.filter(id.eq(id_editora))
+    .first(conn)
 }

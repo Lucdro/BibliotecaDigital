@@ -2,7 +2,7 @@ use diesel::pg::PgConnection;
 use diesel::prelude::*;
 use diesel::QueryDsl;
 use diesel::result::Error;
-use bibliotecadigital::models::Usuario;
+use bibliotecadigital::models::{Usuario,NewUsuario};
 use bibliotecadigital::schema::usuarios;
 use bibliotecadigital::schema::usuarios::dsl::*;
 
@@ -10,8 +10,7 @@ pub fn criar_usuario(conn: &mut PgConnection,
     nome_novo: &str,
     hashed_senha_novo: String,
 ) -> Result<Usuario,Error> {
-    let novo_usuario = Usuario {
-        id: 0,
+    let novo_usuario = NewUsuario {
         nome: nome_novo.to_string(),
         hashed_senha: hashed_senha_novo.to_string(),
         criado_em: None,

@@ -1,0 +1,119 @@
+:root {
+    font-family: 'Roboto', Arial, sans-serif;
+    font-size: 14px;
+  
+    color: #0f0f0f;
+    background-color: #f6f6f6;
+  
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-text-size-adjust: 100%;
+}
+
+*{
+    padding: 0px;
+    margin: 0px;
+}
+
+html{
+    height: 100%;
+}
+
+body {
+    font-size: 14px;
+    background-color: black;
+}
+
+.wrapper{
+    width: 100vw;
+    height: 100vh;
+    background: rgba(197,251,221,1);
+    opacity: 1;
+    position: relative;
+    top: 0px;
+    left: 0px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+}
+
+.deco_esq {
+    width: 50%;
+    height: 100%;
+    background: url("/assets/images/livros.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    opacity: 1;
+    position: relative;
+    top:    0px;
+    left: 0px;
+    overflow: hidden;
+}
+
+.logo{
+    width: 45%;
+    height: 15%;
+    background: url("/assets/images/logo.png");
+    border-radius: 50px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: contain;
+    opacity: 1;
+    position: absolute;
+    bottom: 5rem;
+    left: 2rem;
+    overflow: hidden;
+}
+
+.deco_dir{
+    width: 50%;
+    background: rgba(80,33,28,1);
+}
+.login_form{
+    width: 50%;
+    min-width: 40%;
+    position: relative;
+    top:15%;
+    left: 25%;
+    display: flex;
+    flex-direction: column;
+}
+.login_titulo{
+    color:#f6f6f6;
+    font-size: 4rem;
+    position: relative;
+    left: 25%;
+    margin-bottom: 8rem;
+    font-weight: 300;
+}
+.lbl_form{
+    color: #f6f6f6;
+    position: relative;
+    left: 2rem;
+    font-weight: 300;
+    font-size: 1.5rem;
+}
+.input_form{
+    background-color: #F9CCC8;
+    height: 4rem;
+    border-radius: 20px;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    color: #0f0f0f;
+    padding-left: 2rem;
+}
+.btn_acessar{
+    background-color: #407A5A;
+    height: 5rem;
+    border-radius: 20px;
+    color: #f6f6f6;
+    font-size: 3rem;
+    margin-top: 2rem;
+}
+.btn_acessar:hover{
+    background-color: #5d9c67;
+    cursor: pointer;
+}

@@ -1,0 +1,143 @@
+:root {
+    font-family: 'Roboto', Arial, sans-serif;
+    font-size: 14px;
+  
+    color: #0f0f0f;
+    background-color: #f6f6f6;
+  
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-text-size-adjust: 100%;
+}
+
+*{
+    padding: 0px;
+    margin: 0px;
+}
+
+html{
+    height: 100%;
+}
+
+body {
+    font-size: 14px;
+    background-color: blue;
+}
+
+.wrapper{
+    width: 100%;
+    height: 100vh;
+    background:#92BCB4;
+    opacity: 1;
+    position: relative;
+    top: 0px;
+    left: 0px;
+    overflow: scroll;
+    display: flex;
+    flex-direction: row;
+}
+.menu_lateral{
+    width: 200px;
+    min-width: 200px;
+    height: 99%;
+    position: relative;
+    margin-left: 1rem;
+    background: #50211C;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    display: flex;
+    flex-direction: column;
+}
+.top_elements{
+    justify-content: space-between;
+    width: 100%;
+    height: 6rem;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+}
+.bem_vindo{
+    color: #f6f6f6;
+    position: absolute;
+    margin-left: 4rem;
+    top: 2rem;
+    font-size: 6rem;
+    font-weight: 100;
+    font-style: italic;
+    text-decoration: underline;
+}
+.user_bar{
+    background: #50211C;
+    position: absolute;
+    right: 0;
+    width: 200px;
+    height: 70px;
+    border-bottom-left-radius: 40px;
+    display: flex;
+    flex-direction: row-reverse;
+}
+.itens_direita{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+.content{
+    position: relative;
+    flex: 1;
+    height: 80%;
+}
+.logo{
+    width: 70%;
+    margin-left: 15%;
+    margin-top: 15%;
+    border-radius: 20px;
+}
+.menu{
+    list-style-type: none;
+    margin-left: 10%;
+    margin-top: 8rem;
+    width: 80%;
+}
+.menu_btn{
+    background: #F9CCC8;
+
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 100px;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 70px;
+}
+.menu_btn a{
+    display: block; /* Make the anchor element a block-level element */
+    padding: 1.25rem; /* Add padding to create clickable area */
+    text-decoration: none; /* Remove underline by default */
+    color: #221919;
+}
+.menu_btn:hover{
+    background-color: #fce2da;
+}
+
+.name_user{
+    color: #f6f6f6;
+    font-size: 2rem;
+    font-weight: 300;
+    margin-top: 2.5rem;
+}
+.user_avatar{
+    height: 80%;
+    max-height: 4rem;
+    width: 4rem;
+    margin: 2%;
+    border-radius: 50px;
+}
+
+@media (max-width: 1280px) {
+    .bem_vindo{
+        font-size: 4rem;
+    }
+  }

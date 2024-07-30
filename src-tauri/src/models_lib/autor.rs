@@ -2,12 +2,12 @@ use diesel::pg::PgConnection;
 use diesel::prelude::*;
 use diesel::QueryDsl;
 use diesel::result::Error;
-use bibliotecadigital::models::Autor;
+use bibliotecadigital::models::{Autor, NewAutor};
 use bibliotecadigital::schema::autores;
 use bibliotecadigital::schema::autores::dsl::*;
 
 pub fn criar_autor(conn: &mut PgConnection, nome_novo: &str) -> Result<Autor,Error>{
-    let novo_autor = Autor  {id: 0, nome: nome_novo.to_string()};
+    let novo_autor = NewAutor  {nome: nome_novo.to_string()};
 
     diesel::insert_into(autores::table)
         .values(&novo_autor)

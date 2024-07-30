@@ -2,12 +2,12 @@ use diesel::pg::PgConnection;
 use diesel::prelude::*;
 use diesel::QueryDsl;
 use diesel::result::Error;
-use bibliotecadigital::models::Idioma;
+use bibliotecadigital::models::{Idioma , NewIdioma};
 use bibliotecadigital::schema::idiomas;
 use bibliotecadigital::schema::idiomas::dsl::*;
 
 pub fn criar_idioma(conn: &mut PgConnection, nome_novo: &str) -> Result<Idioma,Error>{
-    let nova_idioma = Idioma  {id: 0, nome: nome_novo.to_string()};
+    let nova_idioma = NewIdioma  {nome: nome_novo.to_string()};
 
     diesel::insert_into(idiomas::table)
         .values(&nova_idioma)
@@ -30,4 +30,9 @@ pub fn mudar_nome_idioma(conn: &mut PgConnection, id_idioma: i32, novo_nome: &st
         .set(nome.eq(novo_nome))
         .returning(Idioma::as_returning())
         .get_result(conn)
+}
+
+pub fn buscar_idioma_id(conn: &mut PgConnection, id_idioma: i32) -> Result<Idioma,Error>{
+    idiomas.filter(id.eq(id_idioma))
+    .first(conn)
 }

@@ -2,12 +2,12 @@ use diesel::pg::PgConnection;
 use diesel::prelude::*;
 use diesel::QueryDsl;
 use diesel::result::Error;
-use bibliotecadigital::models::Categoria;
+use bibliotecadigital::models::{Categoria, NewCategoria};
 use bibliotecadigital::schema::categorias;
 use bibliotecadigital::schema::categorias::dsl::*;
 
 pub fn criar_categoria(conn: &mut PgConnection, nome_novo: &str) -> Result<Categoria,Error>{
-    let nova_categoria = Categoria  {id: 0, nome: nome_novo.to_string()};
+    let nova_categoria = NewCategoria  {nome: nome_novo.to_string()};
 
     diesel::insert_into(categorias::table)
         .values(&nova_categoria)

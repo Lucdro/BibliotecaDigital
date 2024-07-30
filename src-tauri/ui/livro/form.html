@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link href="../css/main.css" rel="stylesheet" />
+    <link href="./css/main.css" rel="stylesheet" />
+    <title>Formulário de livro</title>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="menu_lateral">
+            <img src="../assets/images/logo.png" alt="logo" class="logo">
+            <ul class="menu">
+               <li class="menu_btn"><a href="../home/index.html">Início</a></li> 
+               <li class="menu_btn"><a href="../reserva/index.html">Reservas</a></li> 
+               <li class="menu_btn"><a href="../livro/index.html">Livros</a></li> 
+               <li class="menu_btn"><a href="../pessoa/index.html">Pessoas</a></li> 
+            </ul>
+        </div>
+        <div class="itens_direita">
+            <div class="top_elements">
+                <span class="bem_vindo">Formulário de livro</span>
+                <div class="user_bar">
+                    <img src="../assets/images/user_avatar.jpg" alt="user avatar" class="user_avatar">
+                    <span class="name_user">Usuário</span>
+                </div>
+            </div>
+            <div class="content">
+                <form id="livro_form">
+                    <div class="first_collum">
+                        <div class="form_group">
+                            <label for="codigo_barras" class="lbl_form">Código de barras</label>
+                            <input type="text" id="codigo_barras" name="codigo_barras" class="input_form">
+                        </div>
+                        <div class="form_group">
+                            <label for="titulo" class="lbl_form">Título</label>
+                            <input type="text" id="titulo" name="titulo" class="input_form">
+                        </div>
+                        <div class="form_group">
+                            <label for="quantidade" class="lbl_form">Quantidade</label>
+                            <input type="number" id="quantidade" name="quantidade" min="0" class="input_form" oninput="validateNumberInput(event)" value="1">
+                        </div>
+                        <div class="form_group">
+                            <label for="paginas" class="lbl_form">Páginas</label>
+                            <input type="number" id="paginas" name="paginas" min="0" class="input_form" oninput="validateNumberInput(event)">
+                        </div>
+                        <div class="form_group">
+                            <label for="publicacao" class="lbl_form">Ano de publicação</label>
+                            <input type="number" id="publicacao" name="publicacao" min="0" max="9999" class="input_form" oninput="validateNumberInput(event);ensureRange(event)">
+                        </div>
+                        <div class="form_group">
+                            <label for="editora" class="lbl_form">Editora</label>
+                            <input list="editoras" type="text" id="editora" name="editora"class="input_form" >
+                            <datalist id="editoras"></datalist>
+                        </div>
+                        <div class="form_group">
+                            <label for="edicao" class="lbl_form">Edição</label>
+                            <input type="text" id="edicao" name="edicao" class="input_form">
+                        </div>
+                        <div class="form_group">
+                            <label for="volume" class="lbl_form">Volume</label>
+                            <input type="number" id="volume" name="volume" min="0" max="9999" class="input_form" oninput="validateNumberInput(event);ensureRange(event)">
+                        </div>
+                        
+                    </div>
+                    <div class="center_collum">
+                        <div class="form_group">
+                            <label for="idioma" class="lbl_form">Idioma</label>
+                            <input list="idiomas" type="text" id="idioma" name="idioma"class="input_form" value="Português">
+                            <datalist id="idiomas"></datalist>
+                        </div>
+                        <div class="form_group">
+                            <label for="origem" class="lbl_form">Local de origem</label>
+                            <input type="text" id="origem" name="origem" class="input_form">
+                        </div>
+                        <div class="form_group">
+                            <label for="descricao" class="lbl_form">Descrição</label>
+                            <input type="text" id="descricao" name="descricao" class="input_form">
+                        </div>
+                        <div class="multiple_selection">
+                            <div>
+                                <button class="add_selection" id="add_selection_categoria">+</button>
+                                <div class="selecao_group">
+                                    <span>Categorias</span>
+                                    <div class="selecionados" id="categorias_selecionadas"></div>
+                                </div>
+                            </div>
+                            <input list="categorias" type="text" class="selection" id="selecao_categorias">
+                            <datalist name="categorias" id="categorias"></datalist>
+                        </div>
+                        <div class="multiple_selection">
+                            <div>
+                                <button class="add_selection" id="add_selection_autor">+</button>
+                                <div class="selecao_group">
+                                    <span>Autores</span>
+                                    <div class="selecionados" id="autores_selecionadas"></div>
+                                </div>
+                            </div>
+                            <input list="autores" type="text" class="selection" id="selecao_autores">
+                            <datalist name="autores" id="autores"></datalist>
+                        </div>
+                    </div>
+                    <div class="submit_collum">
+                        <input type="submit" value="Salvar" class="btn_submit">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="form.js"></script>
+</body>
+</html>

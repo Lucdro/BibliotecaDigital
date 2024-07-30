@@ -5,7 +5,7 @@ use diesel::*;
 use diesel::QueryDsl;
 use diesel::result::Error;
 use bibliotecadigital::schema::emprestimos::dsl::*;
-use bibliotecadigital::models::Emprestimo;
+use bibliotecadigital::models::{Emprestimo, NewEmprestimo};
 use bibliotecadigital::schema::emprestimos;
 
 pub fn criar_emprestimo(
@@ -15,8 +15,7 @@ pub fn criar_emprestimo(
     comeco_novo: NaiveDate,
     fim_novo: Option<NaiveDate>,
 ) -> Result<Emprestimo, Error>{
-    let novo_emprestimo = Emprestimo  {
-        id: 0,
+    let novo_emprestimo = NewEmprestimo  {
         livro_id: livro_id_novo,
         pessoa_cpf: pessoa_cpf_novo.to_string(),
         comeco: comeco_novo,

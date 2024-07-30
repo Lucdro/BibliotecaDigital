@@ -2,15 +2,14 @@ use diesel::pg::PgConnection;
 use diesel::prelude::*;
 use diesel::QueryDsl;
 use diesel::result::Error;
-use bibliotecadigital::models::{AutorLivro, Livro, Autor};
+use bibliotecadigital::models::{AutorLivro, NewAutorLivro , Livro, Autor};
 use bibliotecadigital::schema::{autores_livro, livros, autores};
 use bibliotecadigital::schema::autores_livro::dsl::*;
 use bibliotecadigital::schema::livros::dsl::*;
 use bibliotecadigital::schema::autores::dsl::*;
 
 pub fn adicionar_autor_livro(conn: &mut PgConnection, novo_autor_id: i32, novo_livro_id: i32) -> Result<AutorLivro,Error>{
-    let novo_autor_livro = AutorLivro  {
-        id: 0 ,
+    let novo_autor_livro = NewAutorLivro  {
         autor_id: novo_autor_id,
         livro_id: novo_livro_id,
     };

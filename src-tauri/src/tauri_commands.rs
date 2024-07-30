@@ -165,14 +165,31 @@ pub fn mudar_nome_editora_tauri(id: i32,novo_nome: &str) -> Result<String, Strin
         Err(err) => {Err(format!("Não foi possível alterar editora: {}",err))}
     }
 }
+#[command]
+pub fn buscar_editora_id_tauri(id: i32) -> Result<String,String>{
+    let mut conn: PgConnection = establish_connection().map_err(|e| format!("Erro na conexão: {}",e) )?;
+
+    match buscar_editora_id(&mut conn, id){
+        Ok(editora) => {
+            let json = serde_json::to_string(&editora);
+            match json{
+                Ok(j) => {
+                    Ok(j)
+                },
+                Err(e) => Err(e.to_string()), 
+            }
+        },
+        Err(err) => {Err(format!("Não foi possível buscar editora: {}",err))}
+    }
+}
 //Idioma
 #[command]
 pub fn salvar_idioma_tauri(nome: &str) -> Result<String, String> {
     let mut conn: PgConnection = establish_connection().map_err(|e| format!("Erro na conexão: {}",e) )?;
 
     match criar_idioma(&mut conn, nome){
-        Ok(editora) => {
-            let json = serde_json::to_string(&editora);
+        Ok(idioma) => {
+            let json = serde_json::to_string(&idioma);
             match json{
                 Ok(j) => {
                     tauri_create_log(&mut conn, format!("Criar idioma {}",nome))?;    
@@ -189,8 +206,8 @@ pub fn listar_idiomas_tauri(nome: &str) -> Result<String, String>{
     let mut conn: PgConnection = establish_connection().map_err(|e| format!("Erro na conexão: {}",e) )?;
 
     match listar_idiomas(&mut conn, nome){
-        Ok(editoras) => {
-            let json = serde_json::to_string(&editoras);
+        Ok(idiomas) => {
+            let json = serde_json::to_string(&idiomas);
             match json{
                 Ok(j) => Ok(j),
                 Err(e) => Err(e.to_string()), 
@@ -200,12 +217,29 @@ pub fn listar_idiomas_tauri(nome: &str) -> Result<String, String>{
     }
 }
 #[command]
+pub fn buscar_idioma_id_tauri(id: i32) -> Result<String,String>{
+    let mut conn: PgConnection = establish_connection().map_err(|e| format!("Erro na conexão: {}",e) )?;
+
+    match buscar_idioma_id(&mut conn, id){
+        Ok(idioma) => {
+            let json = serde_json::to_string(&idioma);
+            match json{
+                Ok(j) => {   
+                    Ok(j)
+                },
+                Err(e) => Err(e.to_string()), 
+            }
+        },
+        Err(err) => {Err(format!("Não foi possível buscar idioma: {}",err))}
+    }
+}
+#[command]
 pub fn apagar_idioma_tauri(id: i32) -> Result<String, String>{
     let mut conn: PgConnection = establish_connection().map_err(|e| format!("Erro na conexão: {}",e) )?;
 
     match apagar_idioma(&mut conn, id){
-        Ok(editora) => {
-            let json = serde_json::to_string(&editora);
+        Ok(usize) => {
+            let json = serde_json::to_string(&usize);
             match json{
                 Ok(j) => {
                     tauri_create_log(&mut conn, format!("Apagar idioma {}",id))?;    
@@ -222,8 +256,8 @@ pub fn mudar_nome_idioma_tauri(id: i32,novo_nome: &str) -> Result<String, String
     let mut conn: PgConnection = establish_connection().map_err(|e| format!("Erro na conexão: {}",e) )?;
 
     match mudar_nome_idioma(&mut conn, id, novo_nome){
-        Ok(editora) => {
-            let json = serde_json::to_string(&editora);
+        Ok(idioma) => {
+            let json = serde_json::to_string(&idioma);
             match json{
                 Ok(j) => {
                     tauri_create_log(&mut conn, format!("Mudar idioma {} para {}", id, novo_nome))?;    
@@ -238,17 +272,17 @@ pub fn mudar_nome_idioma_tauri(id: i32,novo_nome: &str) -> Result<String, String
 //Livro
 #[command]
 pub fn salvar_livro_tauri(
-    codigo_barras_novo: Option<&str>, 
-    titulo_novo: &str, 
-    quantidade_novo: i16,
-    paginas_novo: Option<i16>,
-    publicacao_novo: Option<i16>,
-    editora_id_novo: i32,
-    edicao_novo: &str,
-    volume_novo: i16,
-    idioma_id_novo: i32,
-    origem_novo: Option<&str>,
-    descricao_novo: Option<&str>,
+   codigo_barras_novo:Option<&str>,
+   titulo_novo:&str,
+   quantidade_novo:i16,
+   paginas_novo:Option<i16>,
+   publicacao_novo:Option<i16>,
+   editora_id_novo:i32,
+   edicao_novo:&str,
+   volume_novo:i16,
+   idioma_id_novo:i32,
+   origem_novo:Option<&str>,
+   descricao_novo:Option<&str>,
 ) -> Result<String, String>{
     let mut conn: PgConnection = establish_connection().map_err(|e| format!("Erro na conexão: {}",e) )?;
 
@@ -325,6 +359,25 @@ pub fn listar_livros_tauri(
     }
 }
 #[command]
+pub fn buscar_livro_id_tauri(id: i32) -> Result<String,String>{
+    let mut conn: PgConnection = establish_connection().map_err(|e| format!("Erro na conexão: {}",e) )?;
+    match buscar_livro_id(
+        &mut conn,
+        id,
+    ) {
+       Ok(livro) => {
+            let json = serde_json::to_string(&livro);
+                match json{
+                    Ok(j) => {    
+                        Ok(j)
+                    },
+                    Err(e) => Err(e.to_string()), 
+                }
+        } 
+        Err(err) => {Err(format!("Não foi possível buscar livro: {}",err))}
+    }
+}
+#[command]
 pub fn apagar_livro_tauri(id_apagar: i32) -> Result<String,String>{
     let mut conn: PgConnection = establish_connection().map_err(|e| format!("Erro na conexão: {}",e) )?;
 
@@ -348,34 +401,34 @@ pub fn apagar_livro_tauri(id_apagar: i32) -> Result<String,String>{
 #[command]
 pub fn alterar_livro_tauri(
     id_alterar: i32,
-    titulo_alterar: Option<&str>, 
-    codigo_barras_alterar: Option<&str>,
-    quantidade_alterar: Option<i16>,
-    paginas_alterar: Option<i16>,
-    publicacao_alterar: Option<i16>,
-    editora_id_alterar: Option<i32>,
-    edicao_alterar: Option<&str>,
-    volume_alterar: Option<i16>,
-    idioma_id_alterar: Option<i32>,
-    origem_alterar: Option<&str>,
-    descricao_alterar: Option<&str>,
+    titulo_novo: Option<&str>, 
+    codigo_barras_novo: Option<&str>,
+    quantidade_novo: Option<i16>,
+    paginas_novo: Option<i16>,
+    publicacao_novo: Option<i16>,
+    editora_id_novo: Option<i32>,
+    edicao_novo: Option<&str>,
+    volume_novo: Option<i16>,
+    idioma_id_novo: Option<i32>,
+    origem_novo: Option<&str>,
+    descricao_novo: Option<&str>,
 ) -> Result<String,String>{
     let mut conn: PgConnection = establish_connection().map_err(|e| format!("Erro na conexão: {}",e) )?;
 
     match alterar_livro(
         &mut conn,
         id_alterar,
-        titulo_alterar,
-        codigo_barras_alterar,
-        quantidade_alterar,
-        paginas_alterar,
-        publicacao_alterar,
-        editora_id_alterar,
-        edicao_alterar,
-        volume_alterar,
-        idioma_id_alterar,
-        origem_alterar,
-        descricao_alterar,
+        titulo_novo,
+        codigo_barras_novo,
+        quantidade_novo,
+        paginas_novo,
+        publicacao_novo,
+        editora_id_novo,
+        edicao_novo,
+        volume_novo,
+        idioma_id_novo,
+        origem_novo,
+        descricao_novo,
     ) {
        Ok(livro) => {
             let json = serde_json::to_string(&livro);
@@ -818,10 +871,10 @@ pub fn apagar_usuario_tauri(id: i32) -> Result<String,String>{
     }
 }
 #[command]
-pub fn listar_usuarios_tauri(nome_busca: &str) -> Result<String,String>{
+pub fn listar_usuarios_tauri(filtro: &str) -> Result<String,String>{
     let mut conn: PgConnection = establish_connection().map_err(|e| format!("Erro na conexão: {}",e) )?;
 
-    match listar_usuarios(&mut conn, nome_busca){
+    match listar_usuarios(&mut conn, filtro){
         Ok(usuarios) => {
             let json = serde_json::to_string(&usuarios);
                 match json{
@@ -863,12 +916,15 @@ pub fn garantir_existencia_adm() -> Result<String,String>{
                     Err(e) => Err(e.to_string()), 
                 }
         },
-        Err(e) => {
+        Err(_e) => {
             match criar_usuario(&mut conn, "admin", hash("12345678")) {
                 Ok(u) => {
                     let json = serde_json::to_string(&u);
                     match json{
-                        Ok(j) => Ok(j),
+                        Ok(j) =>{
+                            tauri_create_log(&mut conn, "Criado admin original".to_string())?;    
+                            Ok(j)
+                        },
                         Err(e) => Err(e.to_string()), 
                     } 
                 },

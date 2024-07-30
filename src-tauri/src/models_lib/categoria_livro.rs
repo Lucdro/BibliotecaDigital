@@ -2,15 +2,14 @@ use diesel::pg::PgConnection;
 use diesel::prelude::*;
 use diesel::QueryDsl;
 use diesel::result::Error;
-use bibliotecadigital::models::{CategoriaLivro, Livro, Categoria};
+use bibliotecadigital::models::{CategoriaLivro, NewCategoriaLivro, Livro, Categoria};
 use bibliotecadigital::schema::{categorias_livro, livros, categorias};
 use bibliotecadigital::schema::categorias_livro::dsl::*;
 use bibliotecadigital::schema::livros::dsl::*;
 use bibliotecadigital::schema::categorias::dsl::*;
 
 pub fn adicionar_categoria_livro(conn: &mut PgConnection, novo_categoria_id: i32, novo_livro_id: i32) -> Result<CategoriaLivro,Error>{
-    let nova_categoria_livro = CategoriaLivro  {
-        id: 0 ,
+    let nova_categoria_livro = NewCategoriaLivro  {
         categoria_id: novo_categoria_id,
         livro_id: novo_livro_id,
     };
