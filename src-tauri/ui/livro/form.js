@@ -266,53 +266,10 @@ async function salvarLivro(){
     let novo_livro = {};
     console.log(data);
 
-    //verificar e criar editora
-    editora_salva = editoras.find(editora => editora.nome == data.editora);
-    if(!editora_salva){
-        try{
-            const response = await invoke('salvar_editora_tauri', {nome: data.editora});
-            let editora = JSON.parse(response);
-            novo_livro.editoraIdNovo = Number(editora.id);
-        }catch(e){console.log(e);}
-    }else{ novo_livro.editoraIdNovo = Number(editora_salva.id); }
-
-    //verificar e criar idioma
-    idioma_salvo = idiomas.find(idioma => idioma.nome == data.idioma);
-    if(!idioma_salvo){
-        try{
-            const response = await invoke('salvar_idioma_tauri', {nome: data.idioma});
-            let idioma = JSON.parse(response);
-            novo_livro.idiomaIdNovo = Number(idioma.id);
-        }catch(e){console.log(e);}
-    }else{ novo_livro.idiomaIdNovo = Number(idioma_salvo.id); }
-
-    //verificar e criar categorias
-    let ids_categoria = [];
-    for(const div of categorias_selecionadas.querySelectorAll('div')){
-        let id = div.getAttribute('item_id');
-        if(id == undefined){
-            try{
-                const response = await invoke('salvar_categoria_tauri', {nome: div.getAttribute('value')});
-                const categoria  = JSON.parse(response);
-                id = categoria.id;
-            }catch(e){ console.log(e); }
-        }
-        ids_categoria.push(Number(id));
-    }
-
-    //verificar e criar autores
-    let ids_autor = [];
-    for(const div of autores_selecionadas.querySelectorAll('div')){
-        let id = div.getAttribute('item_id');
-        if(id == undefined){
-            try{
-                const response = await invoke('criar_autor_tauri', {nome: div.getAttribute('value')});
-                const autor  = JSON.parse(response);
-                id = autor.id;
-            }catch(e){console.log(e);}
-        }
-        ids_autor.push(Number(id));
-    }
+    await verificarCriarEditora();
+    await verificarCriarIdioma();
+    const ids_categoria = await verificarCriarCategoria();
+    const ids_autor = await verificarCriarAutor();    
 
     //verificar e criar livro
     novo_livro.codigoBarrasNovo = data.codigo_barras == '' ? undefined : data.codigo_barras; 
@@ -388,4 +345,60 @@ async function salvarLivro(){
         }catch(e){console.log(e);}
     }
     window.location.href = `./index.html?titulo=${livro.titulo}`;
+}
+
+async function verificarCriarEditora(){
+    //verificar e criar editora
+    editora_salva = editoras.find(editora => editora.nome == data.editora);
+    if(!editora_salva){
+        try{
+            const response = await invoke('salvar_editora_tauri', {nome: data.editora});
+            let editora = JSON.parse(response);
+            novo_livro.editoraIdNovo = Number(editora.id);
+        }catch(e){console.log(e);}
+    }else{ novo_livro.editoraIdNovo = Number(editora_salva.id); }
+}
+
+async function verificarCriarIdioma(){
+    //verificar e criar idioma
+    idioma_salvo = idiomas.find(idioma => idioma.nome == data.idioma);
+    if(!idioma_salvo){
+        try{
+            const response = await invoke('salvar_idioma_tauri', {nome: data.idioma});
+            let idioma = JSON.parse(response);
+            novo_livro.idiomaIdNovo = Number(idioma.id);
+        }catch(e){console.log(e);}
+    }else{ novo_livro.idiomaIdNovo = Number(idioma_salvo.id); }
+}
+
+async function verificarCriarCategoria(){
+    let ids_categoria = [];
+    for(const div of categorias_selecionadas.querySelectorAll('div')){
+        let id = div.getAttribute('item_id');
+        if(id == undefined){
+            try{
+                const response = await invoke('salvar_categoria_tauri', {nome: div.getAttribute('value')});
+                const categoria  = JSON.parse(response);
+                id = categoria.id;
+            }catch(e){ console.log(e); }
+        }
+        ids_categoria.push(Number(id));
+    }
+    return ids_categoria;
+}
+
+async function verificarCriarAutor(){
+    let ids_autor = [];
+    for(const div of autores_selecionadas.querySelectorAll('div')){
+        let id = div.getAttribute('item_id');
+        if(id == undefined){
+            try{
+                const response = await invoke('criar_autor_tauri', {nome: div.getAttribute('value')});
+                const autor  = JSON.parse(response);
+                id = autor.id;
+            }catch(e){console.log(e);}
+        }
+        ids_autor.push(Number(id));
+    }
+    return ids_autor;
 }

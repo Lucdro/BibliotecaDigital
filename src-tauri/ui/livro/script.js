@@ -23,6 +23,14 @@ window.addEventListener('load', async function() {
     await buscarLivros('');
 });
 
+function convertFormDataJson(data){
+    const json = {};
+    data.forEach((value, key) => {
+        json[key] = value;
+    });
+    return json;
+}
+
 async function buscarLivros(filtro){
     try{
         const response = await invoke('listar_livros_tauri', {titulo_busca: filtro});
@@ -32,14 +40,6 @@ async function buscarLivros(filtro){
             criarElementoLivro(livro);
         }
     }catch(e){console.log(e);}
-}
-
-function convertFormDataJson(data){
-    const json = {};
-    data.forEach((value, key) => {
-        json[key] = value;
-    });
-    return json;
 }
 
 async function criarElementoLivro(livro){
