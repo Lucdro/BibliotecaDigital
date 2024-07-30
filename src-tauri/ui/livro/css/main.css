@@ -145,13 +145,13 @@ input[type="number"] {
 .bem_vindo{
     font-size: 4rem;
 }
-.first_collum{
+.first_column{
     width: 300px;
 }
-.center_collum{
+.center_column{
     width: 300px;
 }
-.submit_collum{
+.submit_column{
     position: absolute;
     right: 0;
     bottom: 2rem;
