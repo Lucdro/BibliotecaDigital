@@ -34,8 +34,10 @@ function convertFormDataJson(data){
 async function buscarPessoas(filtro){
     try{
         const response = await invoke('listar_pessoas_tauri', {nome: filtro});
+        console.log(filtro)
         const pessoas = JSON.parse(response);
         //console.log(pessoas)
+        lista_pessoas.innerHTML = '';
         for(const pessoa of pessoas){
             criarElementoPessoa(pessoa);
         }

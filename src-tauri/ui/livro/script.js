@@ -33,9 +33,11 @@ function convertFormDataJson(data){
 
 async function buscarLivros(filtro){
     try{
-        const response = await invoke('listar_livros_tauri', {titulo_busca: filtro});
+        const response = await invoke('listar_livros_tauri', {tituloBusca: filtro});
+        //console.log(filtro);
         const livros = JSON.parse(response);
         //console.log(livros)
+        lista_livros.innerHTML = '';
         for(const livro of livros){
             criarElementoLivro(livro);
         }

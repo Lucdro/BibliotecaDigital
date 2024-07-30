@@ -1,0 +1,105 @@
+.content{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding:2rem;
+    position: relative;
+}
+.content_top{
+    height: 4rem;
+    display: grid;
+    grid-template-columns: 1fr auto; /* One column for content, one for button */
+    align-items: center;
+}
+.filters form{
+    height: fit-content;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+}
+.show_itens{
+    background: #B1D7D0;
+    border-radius: 10px;
+    flex: 1;
+}
+.lbl_form{
+    color: #0f0f0f;
+    font-weight: 400;
+    margin-left: 1rem;
+    font-size: 1.25rem;
+}
+.lbl_filtro{
+    color: #0f0f0f;
+    position: relative;
+    left: 2rem;
+    font-weight: 400;
+    font-size: 1.5rem;
+}
+.input_form{
+    background-color: #F9CCC8;
+    height: 2rem;
+    border-radius: 10px;
+    font-size: 1.25rem;
+    color: #0f0f0f;
+    padding-left: 1rem;
+    margin-bottom: 0.5rem;
+    margin-right: 1rem;
+}
+.input_filtro{
+    background-color: #F9CCC8;
+    height: 3rem;
+    border-radius: 20px;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    color: #0f0f0f;
+    padding-left: 2rem;
+}
+.btn_pesquisar{
+    background-color: #407A5A;
+    height: fit-content;
+    border-radius: 15px;
+    font-size: 1.5rem;
+    color: #f6f6f6;
+    padding: 1rem;
+}
+.btn_submit{
+    background-color: #407A5A;
+    height: fit-content;
+    border-radius: 15px;
+    margin-right: 3rem;
+    font-size: 1.5rem;
+    color: #f6f6f6;
+    padding: 1rem;
+}
+.btn_pesquisar:hover{
+    background-color: #5d9c67;
+    cursor: pointer;
+}
+.form_group{
+    display: flex;
+    flex-direction: column;
+}
+.bem_vindo{
+    font-size: 4rem;
+}
+#create_new{
+    color:#f6f6f6;
+    font-size: 2rem;
+    font-weight: 300;
+    background: #50211C;
+    padding: 1.5rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    border-radius: 15px;
+    margin-right: 1rem;
+}
+#create_new:hover{
+    background: #795730;
+    cursor: pointer;
+}
+.form_column{
+    max-width: 600px;
+}

@@ -132,7 +132,7 @@ async function preencherForm(){
 async function adicionarEventosCategoria(){
     document.getElementById('add_selection_categoria').addEventListener('click', (e) => {
         e.preventDefault();
-        selecao_categorias.style.display = 'block'
+        selecao_categorias.classList.toggle('hidden');
     })
 
     selecao_categorias.addEventListener('input', (e) =>{
@@ -140,8 +140,8 @@ async function adicionarEventosCategoria(){
             const categoria = categorias_datalist.querySelector(`option[value="${e.target.value}"]`);
             addSelectionContentCategoria(categoria.value, categoria.getAttribute('item_id'));
             e.target.value = '';
-            e.target.style.display = 'none';
-            categorias_datalist.style.display = 'none';
+            e.target.classList.toggle('hidden');
+            categorias_datalist.classList.toggle('hidden');
         }
     })
     selecao_categorias.addEventListener('keydown', (e) => {
@@ -151,8 +151,8 @@ async function adicionarEventosCategoria(){
         }else if(e.key == 'Enter'){
             const value = e.target.value;
             selecao_categorias.value = '';
-            selecao_categorias.style.display = 'none';
-            categorias_datalist.style.display = 'none';
+            selecao_categorias.classList.toggle('hidden');
+            categorias_datalist.classList.toggle('hidden');
             if(value == ''){return;}
             addSelectionContentCategoria(value);
             e.preventDefault();
@@ -163,7 +163,7 @@ async function adicionarEventosCategoria(){
 function addSelectionContentCategoria(value, item_id){
     if(value == ''){
         selecao_categorias.value = '';
-        selecao_categorias.style.display = 'none';
+        selecao_categorias.classList.toggle('hidden');
         return;
     };
     const find = categorias_selecionadas.querySelector(`div[value="${value.toLowerCase()}"]`)
@@ -185,15 +185,15 @@ function deletarElemento(e){
 async function adicionarEventosAutores(){
     document.getElementById('add_selection_autor').addEventListener('click', (e) => {
         e.preventDefault();
-        document.getElementById('selecao_autores').style.display = 'block'
+        document.getElementById('selecao_autores').classList.toggle('hidden');
     })
     selecao_autores.addEventListener('input', (e) =>{
         if(e.data == undefined && e.inputType != 'deleteContentBackward'){
             const autor = autores_datalist.querySelector(`option[value="${e.target.value}"]`);
             addSelectionContentAutores(autor.value, autor.getAttribute('item_id'));
             e.target.value = '';
-            e.target.style.display = 'none';
-            autores_datalist.style.display = 'none';
+            e.target.classList.toggle('hidden');
+            autores_datalist.classList.toggle('hidden');
         }
     })
     selecao_autores.addEventListener('keydown', (e) => {
@@ -203,8 +203,8 @@ async function adicionarEventosAutores(){
         }else if(e.key == 'Enter'){
             const value = e.target.value;
             selecao_autores.value = '';
-            selecao_autores.style.display = 'none';
-            autores_datalist.style.display = 'none';
+            selecao_autores.classList.toggle('hidden');
+            autores_datalist.classList.toggle('hidden');
             if(value == ''){return;}
             addSelectionContentAutores(value);
             e.preventDefault();
@@ -217,7 +217,7 @@ async function adicionarEventosAutores(){
 function addSelectionContentAutores(value, item_id){
     if(value == ''){
         selecao_autores.value = '';
-        selecao_autores.style.display = 'none';
+        selecao_autores.classList.toggle('hidden');
         return
     };
     const find = autores_selecionadas.querySelector(`div[value="${value.toLowerCase()}"]`)
@@ -263,11 +263,11 @@ function adicionarAutores(response){
 
 async function salvarLivro(){
     const data = convertFormDataJson(new FormData(document.getElementById('livro_form')));
-    let novo_livro = {};
     console.log(data);
-
-    await verificarCriarEditora();
-    await verificarCriarIdioma();
+    let novo_livro = {};
+    
+    novo_livro.editoraIdNovo = await verificarCriarEditora(data);
+    novo_livro.idiomaIdNovo = await verificarCriarIdioma(data);
     const ids_categoria = await verificarCriarCategoria();
     const ids_autor = await verificarCriarAutor();    
 
@@ -347,28 +347,28 @@ async function salvarLivro(){
     window.location.href = `./index.html?titulo=${livro.titulo}`;
 }
 
-async function verificarCriarEditora(){
+async function verificarCriarEditora(data){
     //verificar e criar editora
     editora_salva = editoras.find(editora => editora.nome == data.editora);
     if(!editora_salva){
         try{
             const response = await invoke('salvar_editora_tauri', {nome: data.editora});
             let editora = JSON.parse(response);
-            novo_livro.editoraIdNovo = Number(editora.id);
+            return Number(editora.id);
         }catch(e){console.log(e);}
-    }else{ novo_livro.editoraIdNovo = Number(editora_salva.id); }
+    }else{ return Number(editora_salva.id); }
 }
 
-async function verificarCriarIdioma(){
+async function verificarCriarIdioma(data){
     //verificar e criar idioma
     idioma_salvo = idiomas.find(idioma => idioma.nome == data.idioma);
     if(!idioma_salvo){
         try{
             const response = await invoke('salvar_idioma_tauri', {nome: data.idioma});
             let idioma = JSON.parse(response);
-            novo_livro.idiomaIdNovo = Number(idioma.id);
+            return Number(idioma.id);
         }catch(e){console.log(e);}
-    }else{ novo_livro.idiomaIdNovo = Number(idioma_salvo.id); }
+    }else{ return Number(idioma_salvo.id); }
 }
 
 async function verificarCriarCategoria(){

@@ -33,10 +33,10 @@ pub fn listar_pessoas(conn: &mut PgConnection,
 ) -> Result<Vec<Pessoa>,Error>{
     let mut query = pessoas::table.into_boxed();
     
-    if cpf_busca.is_some() { query = query.filter(cpf.like(format!("%{}%",cpf_busca.unwrap()))); }
-    if nome_busca.is_some() { query = query.filter(nome.like(format!("%{}%",nome_busca.unwrap()))); }
-    if email_busca.is_some() { query = query.filter(email.like(format!("%{}%",email_busca.unwrap()))); }
-    if celular_busca.is_some() { query = query.filter(celular.like(format!("%{}%",celular_busca.unwrap()))); }
+    if cpf_busca.is_some() { query = query.filter(cpf.ilike(format!("%{}%",cpf_busca.unwrap()))); }
+    if nome_busca.is_some() { query = query.filter(nome.ilike(format!("%{}%",nome_busca.unwrap()))); }
+    if email_busca.is_some() { query = query.filter(email.ilike(format!("%{}%",email_busca.unwrap()))); }
+    if celular_busca.is_some() { query = query.filter(celular.ilike(format!("%{}%",celular_busca.unwrap()))); }
 
     query.load::<Pessoa>(conn)
 }
