@@ -65,6 +65,10 @@
     color: #f6f6f6;
     padding: 1rem;
 }
+.submit_column{
+    display: flex;
+    flex-direction: column-reverse;
+}
 .btn_submit{
     background-color: #407A5A;
     height: fit-content;
@@ -85,23 +89,10 @@
 .bem_vindo{
     font-size: 4rem;
 }
-#create_new{
-    color:#f6f6f6;
-    font-size: 2rem;
-    font-weight: 300;
-    background: #50211C;
-    padding: 1.5rem;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-    border-radius: 15px;
-    margin-right: 1rem;
-}
-#create_new:hover{
-    background: #795730;
-    cursor: pointer;
-}
 .form_column{
+    width: 100%;
     max-width: 600px;
+    min-width: 300px;
 }
 
 .item_pessoa{
@@ -143,4 +134,36 @@
 }
 .apagar:hover{
     background: #c25526;
+}
+#create_new{
+    color:#f6f6f6;
+    font-size: 2rem;
+    font-weight: 300;
+    background: #50211C;
+    padding: 1.5rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    border-radius: 15px;
+    margin-right: 1rem;
+}
+#create_new:hover{
+    background: #795730;
+    cursor: pointer;
+}
+
+#pessoa_form{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex: 1;
+}
+
+@media (max-width: 1000px){
+    .bem_vindo{
+        font-size: 30px;
+    }
+    #filters_form{
+        display: flex;
+        flex-direction: column;
+    }
 }

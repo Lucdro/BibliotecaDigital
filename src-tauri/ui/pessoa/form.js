@@ -37,7 +37,7 @@ window.addEventListener('load', async (e) => {
 
 async function salvarPessoa(){
     const data = convertFormDataJson(new FormData(document.getElementById('pessoa_form')));
-    data.cpt = data.cpf.replace(/\D/g, ''); //Limpa o cpf
+    data.cpf = data.cpf.replace(/\D/g, ''); //Limpa o cpf
     console.log(data);
 
     if(!validaData(data)){

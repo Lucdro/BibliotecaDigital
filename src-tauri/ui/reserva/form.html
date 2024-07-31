@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link href="../css/main.css" rel="stylesheet" />
+    <link href="./css/main.css" rel="stylesheet" />
+    <title>Formulário de livro</title>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="menu_lateral">
+            <img src="../assets/images/logo.png" alt="logo" class="logo">
+            <ul class="menu">
+               <li class="menu_btn"><a href="../home/index.html">Início</a></li> 
+               <li class="menu_btn"><a href="../reserva/index.html">Reservas</a></li> 
+               <li class="menu_btn"><a href="../livro/index.html">Livros</a></li> 
+               <li class="menu_btn"><a href="../pessoa/index.html">Pessoas</a></li> 
+            </ul>
+        </div>
+        <div class="itens_direita">
+            <div class="top_elements">
+                <span class="bem_vindo">Formulário de livro</span>
+                <div class="user_bar">
+                    <img src="../assets/images/user_avatar.jpg" alt="user avatar" class="user_avatar">
+                    <span class="name_user">Usuário</span>
+                </div>
+            </div>
+            <div class="content">
+                <form id="emprestimo_form">
+                    <div class="info">
+                        <div class="info_div">
+                            <div class="form_group">
+                                <label for="livro" class="lbl_form">Livro</label>
+                                <input list="livros" id="livro" name="livro">
+                                <datalist id="livros"></datalist>    
+                            </div>
+                            <div class="form_group">
+                                <label for="pessoa" class="lbl_form">Pessoa</label>
+                                <input list="pessoas" id="pessoa" name="pessoa">
+                                <datalist id="pessoas"></datalist>
+                            </div>
+                        </div>
+                        <div class="info_div">
+                            <div class="form_group">
+                                <label for="comeco" class="lbl_form">Começo</label>
+                                <input type="date" id="comeco" name="comeco">
+                            </div>
+                            <div class="form_group">
+                                <label for="fim" class="lbl_form">Fim</label>
+                                <input type="date" id="fim" name="fim">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="submit_column">
+                        <input type="submit" value="Salvar" class="btn_submit">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="form.js"></script>
+</body>
+</html>

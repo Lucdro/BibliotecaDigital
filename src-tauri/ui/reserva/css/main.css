@@ -1,3 +1,21 @@
+form input[type="date"]{
+    padding: 4px;
+}
+form input{
+    margin-bottom: 5px;
+    background: #F9CCC8;
+    border-radius: 10px;
+    color: #0f0f0f;
+    padding: 6px;
+    padding-left: 10px;
+}
+.form_column{
+    max-width: 600px;
+}
+.submit_column{
+    display: flex;
+    flex-direction: column-reverse;
+}
 .content{
     display: flex;
     flex-direction: column;
@@ -50,10 +68,10 @@
 }
 .input_filtro{
     background-color: #F9CCC8;
-    height: 3rem;
+    height: 2rem;
     border-radius: 20px;
     margin-bottom: 1rem;
-    font-size: 1.5rem;
+    font-size: 1rem;
     color: #0f0f0f;
     padding-left: 2rem;
 }
@@ -85,6 +103,85 @@
 .bem_vindo{
     font-size: 4rem;
 }
+.info{
+    display: flex;
+    flex-direction: row;
+}
+.info_div{
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.form_checkbox{
+    display: flex;
+    flex-direction: row-reverse;
+}
+.form_checkbox input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #F9CCC8;
+    border-radius: 4px;
+    outline: none;
+    cursor: pointer;
+    position: relative;
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+.form_checkbox input[type="checkbox"]:checked {
+    background-color: #F9CCC8;
+    border-color: #F9CCC8;
+}
+
+.form_checkbox input[type="checkbox"]:checked::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 10px;
+    height: 5px;
+    border: solid #0f0f0f;
+    border-width: 0 0 2px 2px;
+    transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.form_checkbox label {
+    margin-left: 8px;
+    font-size: 16px;
+    color: #333;
+    cursor: pointer;
+}
+.item_emprestimo{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 15px;
+    background-color: #85a8b9;
+    padding: 10px;
+    border-radius: 10px;     
+}
+.item_emprestimo > div {
+    display: flex;
+    flex-direction: column;
+    color: #f6f6f6;
+    margin-left: 10px;
+}
+.item_emprestimo > div > button{
+    color: #f6f6f6;
+    padding: 5px;
+    font-size: 16px;
+    margin: 2px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.apagar{
+    background: #8d1f10;
+}
+.apagar:hover{
+    background: #c25526;
+}
 #create_new{
     color:#f6f6f6;
     font-size: 2rem;
@@ -100,6 +197,18 @@
     background: #795730;
     cursor: pointer;
 }
-.form_column{
-    max-width: 600px;
+#emprestimo_form{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex: 1;
+}
+@media (max-width: 1000px){
+    .bem_vindo{
+        font-size: 30px;
+    }
+    #filters_form{
+        display: flex;
+        flex-direction: column;
+    }
 }
