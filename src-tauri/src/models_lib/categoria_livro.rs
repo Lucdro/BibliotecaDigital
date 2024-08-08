@@ -27,12 +27,12 @@ pub fn remover_categoria_livro(conn: &mut PgConnection, id_categoria: i32, id_li
 
 pub fn listar_livros_categoria(conn: &mut PgConnection, id_categoria: i32) -> Result<Vec<Livro>,Error>{
     let livros_categoria: Vec<CategoriaLivro> = diesel::QueryDsl::filter(categorias_livro, categoria_id.eq(id_categoria)).load::<CategoriaLivro>(conn)?;
-    let livro_ids: Vec<i32> = livros_categoria.iter().map(|lc| lc.livro_id).collect();
+    let livro_ids: Vec<i32> = livros_categoria.iter().filter_map(|lc| lc.livro_id).collect();
     livros.filter(livros::id.eq_any(livro_ids)).load::<Livro>(conn)
 }
 
 pub fn listar_categorias_livro(conn: &mut PgConnection, id_livro: i32) -> Result<Vec<Categoria>,Error>{
     let categorias_livro_vec: Vec<CategoriaLivro> = diesel::QueryDsl::filter(categorias_livro, livro_id.eq(id_livro)).load::<CategoriaLivro>(conn)?;
-    let autores_ids: Vec<i32> = categorias_livro_vec.iter().map(|ac| ac.categoria_id).collect();
+    let autores_ids: Vec<i32> = categorias_livro_vec.iter().filter_map(|ac| ac.categoria_id).collect();
     categorias.filter(categorias::id.eq_any(autores_ids)).load::<Categoria>(conn)
 }

@@ -27,12 +27,12 @@ pub fn remover_autor_livro(conn: &mut PgConnection, id_autor: i32, id_livro: i32
 
 pub fn listar_livros_autor(conn: &mut PgConnection, id_autor: i32) -> Result<Vec<Livro>,Error>{
     let livros_autor: Vec<AutorLivro> = diesel::QueryDsl::filter(autores_livro, autor_id.eq(id_autor)).load::<AutorLivro>(conn)?;
-    let livro_ids: Vec<i32> = livros_autor.iter().map(|al| al.livro_id).collect();
+    let livro_ids: Vec<i32> = livros_autor.iter().filter_map(|al| al.livro_id).collect();
     livros.filter(livros::id.eq_any(livro_ids)).load::<Livro>(conn)
 }
 
 pub fn listar_autores_livro(conn: &mut PgConnection, id_livro: i32) -> Result<Vec<Autor>,Error>{
     let autores_livro_vec: Vec<AutorLivro> = diesel::QueryDsl::filter(autores_livro, livro_id.eq(id_livro)).load::<AutorLivro>(conn)?;
-    let autores_ids: Vec<i32> = autores_livro_vec.iter().map(|al| al.autor_id).collect();
+    let autores_ids: Vec<i32> = autores_livro_vec.iter().filter_map(|al| al.autor_id).collect();
     autores.filter(autores::id.eq_any(autores_ids)).load::<Autor>(conn)
 }

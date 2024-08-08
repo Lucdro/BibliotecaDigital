@@ -11,8 +11,8 @@ diesel::table! {
 diesel::table! {
     autores_livro (id) {
         id -> Int4,
-        livro_id -> Int4,
-        autor_id -> Int4,
+        livro_id -> Nullable<Int4>,
+        autor_id -> Nullable<Int4>,
     }
 }
 
@@ -27,8 +27,8 @@ diesel::table! {
 diesel::table! {
     categorias_livro (id) {
         id -> Int4,
-        livro_id -> Int4,
-        categoria_id -> Int4,
+        livro_id -> Nullable<Int4>,
+        categoria_id -> Nullable<Int4>,
     }
 }
 
@@ -44,8 +44,8 @@ diesel::table! {
     emprestimos (id) {
         id -> Int4,
         #[max_length = 100]
-        pessoa_cpf -> Varchar,
-        livro_id -> Int4,
+        pessoa_cpf -> Nullable<Varchar>,
+        livro_id -> Nullable<Int4>,
         comeco -> Date,
         fim -> Nullable<Date>,
         cancelado -> Bool,
@@ -70,11 +70,11 @@ diesel::table! {
         quantidade -> Int2,
         paginas -> Nullable<Int2>,
         publicacao -> Nullable<Int2>,
-        editora_id -> Int4,
+        editora_id -> Nullable<Int4>,
         #[max_length = 100]
         edicao -> Varchar,
         volume -> Int2,
-        idioma_id -> Int4,
+        idioma_id -> Nullable<Int4>,
         #[max_length = 100]
         origem -> Nullable<Varchar>,
         #[max_length = 100]

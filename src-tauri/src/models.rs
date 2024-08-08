@@ -53,10 +53,10 @@ pub struct Livro{
     pub quantidade: i16,
     pub paginas: Option<i16>,
     pub publicacao: Option<i16>,
-    pub editora_id: i32,
+    pub editora_id: Option<i32>,
     pub edicao: String,
     pub volume: i16,
-    pub idioma_id: i32,
+    pub idioma_id: Option<i32>,
     pub origem: Option<String>,
     pub descricao: Option<String>,
 }
@@ -102,8 +102,8 @@ pub struct LivroAlterar<'a>{
 #[diesel(table_name = categorias_livro)]
 pub struct CategoriaLivro{
     pub id: i32,
-    pub livro_id: i32,
-    pub categoria_id: i32,
+    pub livro_id: Option<i32>,
+    pub categoria_id: Option<i32>,
 }
 #[derive(Insertable)]
 #[diesel(belongs_to(Livro, foreign_key = livro_id))]
@@ -132,8 +132,8 @@ pub struct NewAutor{
 #[diesel(table_name = autores_livro)]
 pub struct AutorLivro{
     pub id: i32,
-    pub livro_id: i32,
-    pub autor_id: i32,
+    pub livro_id: Option<i32>,
+    pub autor_id: Option<i32>,
 }
 #[derive(Insertable)]
 #[diesel(belongs_to(Livro, foreign_key = livro_id))]
@@ -168,8 +168,8 @@ pub struct PessoaAlterar<'a>{
 #[diesel(table_name = emprestimos)]
 pub struct Emprestimo{
     pub id: i32,
-    pub pessoa_cpf: String,
-    pub livro_id: i32,
+    pub pessoa_cpf: Option<String>,
+    pub livro_id: Option<i32>,
     pub comeco: NaiveDate,
     pub fim: Option<NaiveDate>,
     pub cancelado: bool,

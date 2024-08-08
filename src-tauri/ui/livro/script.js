@@ -104,7 +104,7 @@ async function apagarLivro(id){
 
     //Apagar Livro
     try{
-        await invoke('apagar_livro_tauri' , {idApagar: id});
+        console.log(await invoke('apagar_livro_tauri' , {idApagar: id}));
     }catch(e){ console.log(e); }
     location.reload();
 }
